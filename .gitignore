@@ -1,0 +1,11 @@
+__pycache__
+.ipynb_checkpoints
+notebook
+outputs
+data/*/*
+!data/*/.gitkeep
+ko_bert
+en_bert
+koen_bert
+koen_bert_tuned*
+nohup.out
