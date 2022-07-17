@@ -1,9 +1,9 @@
 # kobert-to-koenbert
-최근 다양한 기관에서 한국어 언어 모델을 개발하고 공유하고 있습니다. 하지만 이러한 모델들은 한국어만 지원하기 때문에 Dialog system, Information retrieval 등 다양한 도메인에서 제작되는 영어 데이터를 활용하기 어렵다는 한계점이 있습니다. Multilingual 모델의 경우 지원하는 언어의 수로 인해 크기가 커 활용이 불편하다는 단점이 있습니다. 이러한 한계점을 해소하고 한국어 모델의 활용도를 높이기 위해 한국어 언어 모델에 영어를 학습하는 프로젝트를 진행하고 있습니다.
+최근 다양한 기관에서 한국어 언어 모델을 개발하고 공유하고 있습니다. 하지만 이러한 모델들은 한국어만 지원하기 때문에 Dialog system, Information retrieval 등 다양한 도메인에서 제작되는 영어 데이터를 활용하기 어렵다는 한계점이 있습니다. Multilingual 모델의 경우 지원하는 언어의 수가 많아 모델 크기가 크고 한국어 성능이 떨어진다는 단점이 있습니다. 이러한 한계점을 해소하고 한국어 모델의 활용도를 높이기 위해 한국어 언어 모델에 영어를 학습하는 프로젝트를 진행하고 있습니다.
 
 ## 방법
-* 한국어 vocab에 없는 영어 vocab을 한국어에 추가하고, 임베딩을 그에 맞게 확장했습니다.
-* 공통된 토큰의 임베딩을 매핑하는 회귀모델을 학습 후, 이를 사용하여 새로 추가한 임베딩의 값을 초기화했습                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                니다.
+* 한국어 vocab에 없는 영어 vocab을 한국어 토크나이저에 추가하고, 임베딩을 그에 맞게 확장했습니다.
+* 한국어와 영어에서 공통된 토큰들의 임베딩을 연결하는 회귀모델을 학습 후, 이를 사용하여 새로 추가한 토큰들의 임베딩 벡터를 초기화 했습니다.
 * [MiniLMv2](https://arxiv.org/abs/2012.15828) 방법으로 영어 모델과의 knowledge distillation을 진행했습니다.
 * Catastrophic forgetting을 방지하고자 한국어 모델과의 knowledge distillation도 함께 진행했습니다.
 
@@ -39,8 +39,8 @@
 
 
 ## 실행
-사용의 편의성을 위해 Huggingface에 모델을 업로드하였습니다. [link](https://huggingface.co/respect5716/koenbert-base)
-```
+사용의 편의성을 위해 Huggingface에 모델을 업로드하였습니다. ([link](https://huggingface.co/respect5716/koenbert-base))
+```python
 from transfomers import AutoTokenizer, AutoModel
 tokenizer = AutoTokenizer.from_pretrained('respect5716/koen-bert-base')
 model = AutoModel.from_pretrained('respect5716/koen-bert-base')
@@ -51,5 +51,4 @@ model = AutoModel.from_pretrained('respect5716/koen-bert-base')
 * RoBERTa, GPT, T5 등 다른 아키텍쳐의 bilingual 작업 또한 계획 중에 있습니다.
 * 모델이 업데이트 됨에 따라 성능평가 결과가 달라질 수 있습니다.
 * 성능평가를 하이퍼파라미터 튜닝 없이 1회만 진행했기 때문에 평가결과가 다소 부정확할 수 있습니다. 전반적인 모델의 수준을 확인하는 정도로만 활용해주세요.
-
 
