@@ -6,6 +6,7 @@
 * 한국어와 영어에서 공통된 토큰들의 임베딩을 연결하는 회귀모델을 학습 후, 이를 사용하여 새로 추가한 토큰들의 임베딩 벡터를 초기화 했습니다.
 * [MiniLMv2](https://arxiv.org/abs/2012.15828) 방법으로 영어 모델과의 knowledge distillation을 진행했습니다.
 * Catastrophic forgetting을 방지하고자 한국어 모델과의 knowledge distillation도 함께 진행했습니다.
+* 한국어 teacher model은 [klue/bert-base](https://huggingface.co/klue/bert-base), 영어 teacher model은 [bert-base-uncased](https://huggingface.co/bert-base-uncased)를 사용했습니다.
 
 
 ## 성능

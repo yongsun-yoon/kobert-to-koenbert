@@ -1,7 +1,7 @@
 cwd: ${hydra:runtime.cwd}
 
 batch_size: 16
-num_training_steps: 200000
+num_training_steps: 100000
 ko_prob: 0.5
 num_relation_heads: 24
 grad_norm: 1.0
